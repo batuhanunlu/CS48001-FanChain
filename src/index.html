@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div class="bg-image text-white" style="background-image: url('https://images5.alphacoders.com/317/thumb-1920-317664.jpg'); height: 1500;">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://cdn.freelogodesign.org/files/2bca51ca3e4d43f58704e33bc72a0e9c/thumb/logo_200x200.png?v=0"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4">
+            <h1 class="text-center">Formula 1 Blockchain Voting Platform</h1>
+            <hr />
+            <br />
+            <div id="loader">
+              <p class="text-center">Loading the racers and their scores, please wait.</p>
+            </div>
+            <div id="content" style="display: none">
+              <table class="table text-white">
+                <thead>
+                  <tr>
+                    <th scope="col">Index of the Racer</th>
+                    <th scope="col">Name of the Racer</th>
+                    <th scope="col">Votes that the Racer Earned</th>
+                  </tr>
+                </thead>
+                <tbody id="results_of_the_racers"></tbody>
+              </table>
+              <hr />
+              <form onSubmit="App.castVote(); return false;">
+                <div class="form-group">
+                  <label for="select_the_racer">Select the Racer</label>
+                  <select class="form-control" id="select_the_racer"></select>
+                </div>
+                <button type="submit" class="btn btn-warning">Vote</button>
+                <hr/>
+              </form>
+              <p id="accountAddress" class="text-center"></p>
+            </div>
+          </div>
+          <div class="col-4 mt-4">
+            <img
+              src="https://wallpapercave.com/wp/wp8757596.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="250"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/M/MAXVER01_Max_Verstappen/maxver01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4">
+            <div class="col-4 mt-4">
+              <div id="pie_chart_of_the_teams"></div>
+              <script
+                type="text/javascript"
+                src="https://www.gstatic.com/charts/loader.js"
+              ></script>
+              <script type="text/javascript">
+                google.charts.load("current", { packages: ["corechart"] });
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart() {
+                  var data = google.visualization.arrayToDataTable([
+                    ["Team", "Championship"],
+                    ["Mercedes", 8],
+                    ["Red Bull-Renault", 4],
+                    ["Brawn-Mercedes", 1],
+                    ["Ferrari", 8],
+                    ["McLaren-Mercedes", 1],
+                  ]);
+                  var options = {
+                    title: "Racing Teams' Championships in 2000-2022 ",
+                    width: 300,
+                    height: 300,
+                  };
+                  var chart = new google.visualization.PieChart(
+                    document.getElementById("pie_chart_of_the_teams")
+                  );
+                  chart.draw(data, options);
+                }
+              </script>
+            </div>
+          </div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Red-Bull-Racing/_jcr_content/logo.img.jpg/1645620474276.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="200"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/S/SERPER01_Sergio_Perez/serper01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Red-Bull-Racing/_jcr_content/logo.img.jpg/1645620474276.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/C/CHALEC01_Charles_Leclerc/chalec01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Ferrari/_jcr_content/logo.img.jpg/1521797474166.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/C/CARSAI01_Carlos_Sainz/carsai01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Ferrari/_jcr_content/logo.img.jpg/1521797474166.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/G/GEORUS01_George_Russell/georus01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Mercedes/_jcr_content/logo.img.jpg/1582638425211.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/L/LEWHAM01_Lewis_Hamilton/lewham01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Mercedes/_jcr_content/logo.img.jpg/1582638425211.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/P/PIEGAS01_Pierre_Gasly/piegas01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/AlphaTauri/_jcr_content/logo.img.jpg/1582650557134.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/Y/YUKTSU01_Yuki_Tsunoda/yuktsu01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/AlphaTauri/_jcr_content/logo.img.jpg/1582650557134.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/E/ESTOCO01_Esteban_Ocon/estoco01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Alpine/_jcr_content/logo.img.jpg/1645620884650.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/F/FERALO01_Fernando_Alonso/feralo01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Alpine/_jcr_content/logo.img.jpg/1645620884650.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/L/LANNOR01_Lando_Norris/lannor01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/McLaren/_jcr_content/logo.img.jpg/1644831223911.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/D/DANRIC01_Daniel_Ricciardo/danric01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/McLaren/_jcr_content/logo.img.jpg/1644831223911.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/M/MICSCH02_Mick_Schumacher/micsch02.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Haas-F1-Team/_jcr_content/logo.img.jpg/1646210673011.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/K/KEVMAG01_Kevin_Magnussen/kevmag01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Haas-F1-Team/_jcr_content/logo.img.jpg/1646210673011.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/A/ALEALB01_Alexander_Albon/alealb01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Williams/_jcr_content/logo.img.jpg/1590743731407.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/N/NICLAF01_Nicholas_Latifi/niclaf01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Williams/_jcr_content/logo.img.jpg/1590743731407.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/S/SEBVET01_Sebastian_Vettel/sebvet01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Aston-Martin/_jcr_content/logo.img.jpg/1645620644658.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/L/LANSTR01_Lance_Stroll/lanstr01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Aston-Martin/_jcr_content/logo.img.jpg/1645620644658.jpg"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/V/VALBOT01_Valtteri_Bottas/valbot01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Alfa-Romeo-Racing/_jcr_content/logo.img.png/1643019381208.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-4 mt-4">
+            <img
+              src="https://www.formula1.com/content/dam/fom-website/drivers/G/GUAZHO01_Guanyu_Zhou/guazho01.png.transform/2col-retina/image.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="150"
+            />
+          </div>
+          <div class="col-4 mt-4"></div>
+          <div class="col-4 mt-xl-4">
+            <img
+              src="https://www.formula1.com/content/fom-website/en/teams/Alfa-Romeo-Racing/_jcr_content/logo.img.png/1643019381208.png"
+              class="rounded mx-auto d-block"
+              alt=""
+              width="210"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/web3.min.js"></script>
+    <script src="js/truffle-contract.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
